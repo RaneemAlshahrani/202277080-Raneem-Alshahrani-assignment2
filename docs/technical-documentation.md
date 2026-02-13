@@ -25,7 +25,7 @@ The system follows a static front-end architecture composed of:
 ### Folder Structure
 
 ```
-202277080-Raneem-Alshahrani-assignment1/
+202277080-Raneem-Alshahrani-assignment2/
 ├── README.md
 ├── index.html
 ├── css/
@@ -77,7 +77,7 @@ No data is transmitted to external services.
 2. Ensure all project folders remain in the same directory structure.
 
 ```
-assignment-1/
+202277080-Raneem-Alshahrani-assignment2/
 ├── README.md
 ├── index.html
 ├── css/
@@ -174,3 +174,4 @@ This portfolio website demonstrates a structured front-end architecture, respons
 3. Document future enhancements (e.g., backend integration)
 4. Keep documentation updated with new features
 5. Validate accessibility improvements periodically
+

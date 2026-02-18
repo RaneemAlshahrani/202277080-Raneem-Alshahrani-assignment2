@@ -1,6 +1,12 @@
 # Technical Documentation
 
 ## Overview
+<!-- ================= Assignment 2 Update Required ================= -->
+
+<!-- ToDo(A2-TD-1):
+Update the description from "static web application"
+to reflect dynamic client-side behavior and UI state management.
+-->
 
 This project is a front-end personal portfolio website developed to present academic background, technical skills, and completed projects in a structured and accessible format. The system is designed as a static web application and focuses on usability, clarity, and organized content presentation.
 
@@ -55,6 +61,12 @@ This structure separates content, styling, logic, and documentation for better m
 Each section is implemented using semantic HTML elements for readability and structured layout.
 
 ### User Interaction Flow
+<!-- ToDo(A2-TD-3):
+Document new Assignment 2 dynamic feature:
+- Explain how it works
+- Describe DOM updates
+- Mention empty-state or feedback behavior
+-->
 
 * User actions (clicks, toggles, navigation) trigger JavaScript event listeners
 
@@ -123,6 +135,9 @@ No additional configuration is required.
 * **Contacting**: Fill out the contact form to send an email
 
 ## API Reference
+<!-- ToDo(A2-TD-4):
+List browser APIs used (e.g., localStorage, IntersectionObserver, matchMedia).
+-->
 
 This project does not expose or consume external APIs.
 
@@ -133,6 +148,10 @@ This project does not expose or consume external APIs.
 * `IntersectionObserver` – triggers scroll-based animations
 
 ## Troubleshooting
+<!-- ToDo(A2-TD-5):
+Add troubleshooting notes related to the Assignment 2 feature
+(e.g., filtering not working, validation failing, element not found).
+-->
 
 ### Common Issues
 

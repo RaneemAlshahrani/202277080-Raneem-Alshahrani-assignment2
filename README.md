@@ -1,3 +1,27 @@
+<!-- ================= Assignment 2 Update Required ================= -->
+
+<!-- ToDo(A2-1):
+Update the project description to explicitly mention:
+- Dynamic content feature (e.g., filtering, live search, expandable sections)
+- Data handling (localStorage / validation / API)
+- Animations and transitions
+- User feedback (empty state / success / error messages)
+-->
+
+<!-- ToDo(A2-2):
+Verify repository name and folder name are correct:
+Replace any occurrence of "assignment1" with "assignment2".
+-->
+
+<!-- ToDo(A2-3):
+Update the GitHub clone URL to point to the assignment2 repository.
+-->
+
+<!-- ToDo(A2-4):
+Update the Short Summary of AI Use section to include
+how AI assisted specifically in Assignment 2 features.
+-->
+
 # Project description
 This project is a personal portfolio website built using HTML, CSS, and JavaScript to showcase my background, projects, and skills in a clear and organized way. I designed and structured the website to reflect my work and present it professionally. AI tools were used strategically during development for minor suggestions, debugging support, and refining certain parts, while the overall concept, design, and content were developed independently by me.
 
@@ -25,7 +49,7 @@ This project is a personal portfolio website built using HTML, CSS, and JavaScri
 3. Click “Clone Repository” on the start screen.
 4. Paste the repository URL:
 ```bash
-https://github.com/RaneemAlshahrani/202277080-Raneem-Alshahrani-assignment1.git
+https://github.com/RaneemAlshahrani/202277080-Raneem-Alshahrani-assignment2.git
 ```
 5. Choose a folder on your computer to save the project.
 6. When prompted, click “Trust the Authors”.

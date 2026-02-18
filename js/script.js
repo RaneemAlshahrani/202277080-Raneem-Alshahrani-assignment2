@@ -171,3 +171,26 @@
     targets.forEach(el => io.observe(el));
   }
 })();
+/* ================= Assignment 2 Upgrade ================= */
+
+/* ToDo9: Implement project filtering logic.
+   - Get all filter buttons
+   - Get all project cards
+   - On button click:
+       - Show matching projects
+       - Hide non-matching projects
+       - Toggle active button class
+       - Show "No projects found" if needed
+*/
+
+/* ToDo10: Add form validation logic.
+   - Prevent default form submission
+   - Validate email format manually
+   - Ensure message length is reasonable
+   - Show success or error message in #form-feedback
+*/
+
+/* ToDo11: Add graceful error handling.
+   - If required elements are missing, log a helpful message
+   - Never let the page fail silently
+*/

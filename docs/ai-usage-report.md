@@ -107,3 +107,23 @@ Rather than replacing development effort, AI served as an intelligent assistant 
 
 ## Conclusion
 AI tools supported debugging, optimization, and conceptual understanding throughout the project. Their integration improved development efficiency while preserving originality and design ownership.
+
+<!-- ================= Assignment 2 Update Required ================= -->
+
+<!-- ToDo(A2-AI-1):
+Add a new section titled "Assignment 2 Additions".
+Describe how AI helped with:
+- Dynamic feature implementation
+- User feedback logic
+- Error handling improvements
+-->
+
+<!-- ToDo(A2-AI-2):
+Ensure at least one NEW example of AI-assisted code
+is documented (not only reused Assignment 1 examples).
+-->
+
+<!-- ToDo(A2-AI-3):
+Confirm that all AI-generated suggestions were reviewed,
+modified if needed, and understood before integration.
+-->

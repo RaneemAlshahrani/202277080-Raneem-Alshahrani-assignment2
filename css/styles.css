@@ -60,6 +60,17 @@ body.menu-open{overflow:hidden}
 @media(max-width:380px){.mobile-menu{padding:10px;top:10px}}
 
 /* ===== Projects ===== */
+/* ================= Assignment 2 Upgrade ================= */
+
+/* ToDo5: Add styles for active filter button.
+   Example: .filter-btn.active { background: #000; color: #fff; } */
+
+/* ToDo6: Add smooth transition when projects hide/show.
+   Use opacity + transform for better UX. */
+
+/* ToDo7: Style the empty state message (#no-projects-msg).
+   Make it centered and slightly faded. */
+
 .project:hover{transform:translateY(-6px);border-color:var(--accent)}
 .project-content{display:flex;flex-direction:column;gap:8px;flex:1}
 .project-title{margin:0;padding:10px;font-size:1.1rem;font-weight:700;line-height:1.25}
@@ -80,6 +91,11 @@ body.menu-open{overflow:hidden}
 #skills h3{margin:45px;font-size:1.5em}
 
 /* ===== Contact form ===== */
+/* ToDo8: Add styles for form feedback messages.
+   .form-message.success { color: green; }
+   .form-message.error { color: red; }
+   Add fade-in animation for better UX. */
+
 #contact form{width:100%;max-width:520px;margin-top:18px;display:grid;gap:14px;text-align:left}
 #contact label{font-weight:600;color:var(--text)}
 #contact input,#contact textarea{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:1rem;outline:none;transition:border-color .15s ease,box-shadow .15s ease}

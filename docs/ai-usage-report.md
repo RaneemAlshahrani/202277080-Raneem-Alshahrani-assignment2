@@ -1,13 +1,18 @@
+
 # AI Usage Report
 
 ## Overview
-This report documents how AI tools were used during the development of the personal portfolio website. AI was used as a support tool for debugging, optimization, UI improvements, and learning modern front-end techniques. All AI suggestions were reviewed, modified when necessary, and tested before being integrated into the final implementation.
+This report documents how AI tools were used during the development of the personal portfolio website. AI was used as a support tool for debugging, optimization, UI improvements, and implementing interactive features required for Assignment 2 such as dynamic content handling, data validation, and user feedback.
+
+All AI suggestions were reviewed, modified when necessary, and tested before being integrated into the final implementation.
 
 ## AI Tools Used
+
 **ChatGPT**:
 * Debugging layout and JavaScript issues
-* Designing dark/light theme behavior
-* Implementing mobile navigation logic
+* Implementing dynamic features (filtering and sorting projects)
+* Integrating EmailJS for sending emails
+* Improving form validation and user feedback
 * Explaining modern browser APIs
 
 **Claude AI**:
@@ -17,32 +22,25 @@ This report documents how AI tools were used during the development of the perso
 
 ## Effective Use of AI
 
-AI tools were used meaningfully to solve specific development challenges rather than to generate the entire project. For example:
+AI tools were used meaningfully to solve specific development challenges rather than to generate the entire project.
 
-1. **Dark Mode Icon Handling**
+### 1. Theme Toggle with Persistence
 
-**Problem**: Black icons became invisible in dark mode.
-**Solution**: Apply a reusable CSS filter class instead of duplicating assets.
-```css
-:root[data-theme="dark"] img.dark-invert{
-  filter: invert(1) hue-rotate(180deg) contrast(1.05);
-}
-```
-This approach reduced redundancy and improved maintainability.
-
-2. **Theme Toggle with Persistence**
 AI suggested using `localStorage` to preserve user preference.
+
 ```javascript
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
 }
 ```
+
 This ensured consistent user experience across sessions.
 
-3. **Performance-Optimized Scroll Animations**
+### 2. Performance-Optimized Scroll Animations
 
-Instead of using scroll event listeners, AI recommended IntersectionObserver.
+Instead of using scroll event listeners, AI recommended `IntersectionObserver`.
+
 ```javascript
 const observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
@@ -52,78 +50,129 @@ const observer = new IntersectionObserver((entries, obs) => {
     }
   });
 });
-
-document.querySelectorAll(".hidden").forEach(el => {
-  observer.observe(el);
-});
-
 ```
 
 This reduced unnecessary computations and improved performance.
 
+### 3. Dynamic Project Filtering and Sorting
+
+**Problem**: Displaying projects dynamically based on user selection.
+**AI Role**: Suggested filtering using dataset attributes and updating the DOM without reloading.
+
+```javascript
+function filterProjects() {
+  const category = filterSelect.value;
+
+  let visible = projects.filter(p => {
+    const cat = p.dataset.category;
+    return category === 'all' || cat === category;
+  });
+
+  visible.forEach(p => projectGrid.appendChild(p));
+}
+```
+
+**Benefit**:
+
+* Real-time updates
+* Improved interactivity
+* Meets dynamic content requirement
+
+### 4. EmailJS Integration (Data Handling)
+
+**Problem**: Sending real emails without a backend server.
+**AI Role**: Guided integration of EmailJS.
+
+```javascript
+await emailjs.send("service_id", "template_id", {
+  from_name: name,
+  from_email: email,
+  subject: subject,
+  message: message
+});
+```
+
+**Benefit**:
+
+* Real email sending functionality
+* No backend required
+* Meets data handling requirement
+
+### 5. Form Validation and User Feedback
+
+**Problem**: Ensuring valid input and clear feedback.
+**AI Role**: Suggested validation logic and feedback messages.
+
+```javascript
+if (!emailRegex.test(email)) {
+  showFeedback('Please enter a valid email address.', 'error');
+}
+```
+
+**Benefit**:
+
+* Prevents invalid input
+* Improves user experience
+* Meets error handling requirement
+
+---
+
 ## Learning Outcomes
 
-**CSS Concepts Learned**:
-- Using CSS custom properties for theming
-- Applying Flexbox and Grid effectively
-- Improving accessibility with proper contrast and reduced-motion support
+### CSS Concepts Learned:
 
-**JavaScript Concepts Learned**:
-- DOM manipulation and event handling
-- Using `localStorage` for persistence
-- Applying `matchMedia` and `IntersectionObserver` for dynamic behavior
+* Using CSS variables for theming
+* Responsive layout using Flexbox and Grid
+* Accessibility improvements (contrast, reduced motion)
+
+### JavaScript Concepts Learned:
+
+* DOM manipulation and event handling
+* Using `localStorage` for persistence
+* Implementing filtering and sorting logic
+* Integrating third-party APIs (EmailJS)
+* Handling errors and user feedback
 
 ## Benefits & Challenges
-- **Benefits**
-  * Reduced debugging time by quickly identifying CSS conflicts and missing event logic.
-  * Improved code quality through refactoring and removal of redundant styles.
 
-- **Challenge 1**: Dark Icons Invisible in Dark Mode
-  * Problem: Icons became invisible on dark backgrounds.
-  * AI Role: Suggested using a reusable `.dark-invert` CSS filter instead of duplicating assets.
-  * Action Taken: Applied the filter conditionally in dark mode and tested contrast.
-  * Benefit: Cleaner asset management and improved maintainability.
+### Benefits
 
-- **Challenge 2**: Mobile Menu Not Closing Properly
-  * Problem: Menu remained open or conflicted with desktop layout.
-  * AI Role: Identified duplicated CSS and incomplete toggle logic.
-  * Action Taken: Consolidated styles and implemented a single JavaScript toggle state.
-  * Benefit: Stable, predictable responsive navigation.
+* Faster debugging and problem-solving
+* Improved code structure and readability
+* Better understanding of modern JavaScript techniques
+
+### Challenge 1: Dynamic Filtering Not Working
+
+* Problem: JavaScript errors stopped filtering
+* AI Role: Helped identify undefined variables and fix logic
+* Benefit: Correct dynamic behavior and bug-free interaction
+
+### Challenge 2: Email Sending Errors
+
+* Problem: EmailJS returned errors (400 status)
+* AI Role: Identified mismatched template variables
+* Benefit: Successful email delivery and improved debugging skills
 
 ## Responsible Use & Modifications
-- All AI-generated code was reviewed and rewritten where necessary.
-- Suggestions were validated using MDN documentation and manual testing.
-- Code was refactored to maintain originality and project consistency.
-- Only understood and verified implementations were integrated.
-AI enhanced development while maintaining academic integrity and full ownership of the final implementation.
+
+* All AI-generated code was reviewed and rewritten where necessary
+* Suggestions were validated through testing and documentation
+* Only understood implementations were used
+* Code was adapted to fit project requirements
+
+AI enhanced development while maintaining academic integrity and full ownership.
 
 ## Innovation
-AI was used creatively to improve both functionality and accessibility. Examples include:
-* Implementing a reusable CSS class (`dark-invert`) to fix dark mode icon issues efficiently
-* Replacing inefficient scroll-based animations with `IntersectionObserver`
-* Improving user experience by adding persistent UI preferences
 
-Rather than replacing development effort, AI served as an intelligent assistant that enhanced learning and problem-solving.
+AI was used creatively to improve both functionality and user experience:
+
+* Implementing dynamic filtering and sorting of projects
+* Integrating EmailJS for real email functionality
+* Enhancing user feedback with clear success/error messages
+* Using IntersectionObserver for efficient animations
+
+AI acted as a learning assistant rather than replacing development effort.
 
 ## Conclusion
-AI tools supported debugging, optimization, and conceptual understanding throughout the project. Their integration improved development efficiency while preserving originality and design ownership.
 
-<!-- ================= Assignment 2 Update Required ================= -->
-
-<!-- ToDo(A2-AI-1):
-Add a new section titled "Assignment 2 Additions".
-Describe how AI helped with:
-- Dynamic feature implementation
-- User feedback logic
-- Error handling improvements
--->
-
-<!-- ToDo(A2-AI-2):
-Ensure at least one NEW example of AI-assisted code
-is documented (not only reused Assignment 1 examples).
--->
-
-<!-- ToDo(A2-AI-3):
-Confirm that all AI-generated suggestions were reviewed,
-modified if needed, and understood before integration.
--->
+AI tools supported debugging, optimization, dynamic feature implementation, and data handling throughout the project. Their integration improved development efficiency while preserving originality, learning outcomes, and full ownership of the final implementation.

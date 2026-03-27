@@ -17,7 +17,6 @@
 
   // Apply the given theme (light or dark)
   function applyTheme(theme) {
-    // Set data-theme attribute on <html> element (used by CSS)
     root.setAttribute("data-theme", theme);
     
     // Save preference to localStorage for persistence across sessions

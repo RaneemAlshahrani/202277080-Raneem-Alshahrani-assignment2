@@ -17,6 +17,7 @@
 
   // Apply the given theme (light or dark)
   function applyTheme(theme) {
+    // Set data-theme attribute on <html> element (used by CSS)
     root.setAttribute("data-theme", theme);
     
     // Save preference to localStorage for persistence across sessions
@@ -170,26 +171,107 @@
     targets.forEach(el => io.observe(el));
   }
 })();
-/* ================= Assignment 2 Upgrade ================= */
 
-/* ToDo9: Implement project filtering logic.
-   - Get all filter buttons
-   - Get all project cards
-   - On button click:
-       - Show matching projects
-       - Hide non-matching projects
-       - Toggle active button class
-       - Show "No projects found" if needed
-*/
+// ===== Projects: filter, search, sort =====
+const projects = Array.from(document.querySelectorAll('.project'));
+const filterSelect = document.getElementById('project-filter');
+const sortYearBtn = document.getElementById('sort-year');
+const sortNameBtn = document.getElementById('sort-name');
+const noProjectsMsg = document.getElementById('no-projects-msg');
 
-/* ToDo10: Add form validation logic.
-   - Prevent default form submission
-   - Validate email format manually
-   - Ensure message length is reasonable
-   - Show success or error message in #form-feedback
-*/
+// Find the wrapper that holds only the project cards
+// We'll use a dedicated container — insert one after project-controls in HTML
+const projectGrid = document.getElementById('project-grid');
 
-/* ToDo11: Add graceful error handling.
-   - If required elements are missing, log a helpful message
-   - Never let the page fail silently
-*/
+let currentSort = null;
+
+function filterProjects() {
+  const category = filterSelect?.value || 'all';
+
+  let visible = projects.filter(p => {
+    const cat = p.dataset.category || '';
+    const matchCategory = category === 'all' || cat === category;
+    return matchCategory;
+  });
+
+  if (currentSort === 'year') {
+    visible.sort((a, b) => Number(b.dataset.year) - Number(a.dataset.year));
+  } else if (currentSort === 'name') {
+    visible.sort((a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''));
+  }
+
+  projects.forEach(p => p.style.display = 'none');
+
+  visible.forEach(p => {
+    p.style.display = '';
+    projectGrid?.appendChild(p);
+  });
+
+  if (noProjectsMsg) noProjectsMsg.hidden = visible.length > 0;
+}
+
+filterSelect?.addEventListener('change', filterProjects);
+
+sortYearBtn?.addEventListener('click', () => {
+  currentSort = currentSort === 'year' ? null : 'year';
+  sortYearBtn.classList.toggle('active', currentSort === 'year');
+  sortNameBtn.classList.remove('active');
+  filterProjects();
+});
+
+sortNameBtn?.addEventListener('click', () => {
+  currentSort = currentSort === 'name' ? null : 'name';
+  sortNameBtn.classList.toggle('active', currentSort === 'name');
+  sortYearBtn.classList.remove('active');
+  filterProjects();
+});
+
+// ===== Contact form =====
+const contactForm = document.getElementById('contact-form');
+const formFeedback = document.getElementById('form-feedback');
+
+function showFeedback(message, type) {
+  if (!formFeedback) return;
+  formFeedback.textContent = message;
+  formFeedback.className = `form-message show ${type}`;
+}
+
+contactForm?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('name')?.value.trim();
+  const email = document.getElementById('email')?.value.trim();
+  const subject = document.getElementById('subject')?.value.trim();
+  const message = document.getElementById('message')?.value.trim();
+
+  if (!name || !email || !subject || !message) {
+    showFeedback('Please fill in all fields before sending.', 'error');
+    return;
+  }
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailRegex.test(email)) {
+    showFeedback('Please enter a valid email address.', 'error');
+    return;
+  }
+
+  showFeedback('Sending message...', 'success');
+
+  try {
+    await emailjs.send("service_tm9i09c", "template_jho9g2r", {
+      from_name: name,
+      from_email: email,
+      subject: subject,
+      message: message
+    });
+
+    showFeedback('Message sent successfully!', 'success');
+    contactForm.reset();
+
+  } catch (error) {
+  console.error('Full EmailJS error:', JSON.stringify(error, null, 2));
+  console.error(error);
+  showFeedback('Failed to send message. Please try again.', 'error');
+  }
+});
+

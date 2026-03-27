@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--this makes the website responsive -->
     <title>Raneem Portfolio</title>
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
+
 <body>  
     <header class="site-header">
     <!-- Main navigation section for the website -->
@@ -61,16 +61,16 @@
   </nav>
 </header>
 
-    <section id="home">
+    <section id="home" class="reveal">
         <!-- Fixed dimensions prevent layout shift during page load -->
         <img src="assets/images/girl-photo.png" alt="Profile Picture" height="200" width="200" class="profile-pic">
          <h1 class="hero-title">Hello, I'm <span class="hero-name">Raneem Alshahrani</span></h1>
-         <p style="font-size: x-large;">Software Engineering Student | Aspiring Software Developer</p>
+         <p>Software Engineering Student | Aspiring Software Developer</p>
     </section>
 
-    <section id="about">
-        <h2 class="About-me">About Me</h2>
-        <p style="font-size: large;">A software Engineering student at KFUPM interested in building reliable 
+    <section id="about" class="reveal">
+        <h2>About Me</h2>
+        <p>A software Engineering student at KFUPM interested in building reliable 
         software systems and applying data and AI techniques to real-world problems.
         I enjoy working on software projects that require clear problem analysis, structured 
         design, and careful implementation. Through my academic projects, I have gained
@@ -79,65 +79,86 @@
         in understanding how software decisions impact real users and long-term system quality.</p>
     </section>
 
-    <!-- ================= Assignment 2 Upgrade ================= -->
-<!-- ToDo1: Add filter buttons above the projects grid (All / Database / Requirements / AI).
-     These buttons should filter visible project cards dynamically using JavaScript. -->
-
-<!-- ToDo2: Add an empty-state message below the project grid.
-     Example: <p id="no-projects-msg" hidden>No projects found.</p>
-     This message should appear when filtering returns no results. -->
-
-    <section id="projects">
+    <section id="projects" class="reveal">
         <h2>Projects</h2>
-        <div class="project">
-          <!-- ToDo3: Add a data-category attribute to each project card.
-     Example: <div class="project" data-category="database"> -->
+        <!-- Project controls: filter + sorting -->
+    <div class="project-controls">
 
+    <!-- Category filter -->
+    <div class="project-filter">
+        <label for="project-filter">Filter by Category:</label>
+        <select id="project-filter">
+            <option value="all">All Projects</option>
+            <option value="web">Web Project</option>
+            <option value="database">Database</option>
+            <option value="requirements">Requirements</option>
+            <option value="ai">AI</option>
+        </select>
+    </div>
+
+    <!-- Sort buttons -->
+    <div class="project-sort">
+        <button id="sort-year" class="sort-btn" type="button">Sort by Date</button>
+        <button id="sort-name" class="sort-btn" type="button">Sort by Name</button>
+    </div>
+
+</div>
+        <div id="project-grid" class="projects">
+        <div class="project" data-category="database" data-title="Horse Racing System" data-year="2025">
             <img src="assets/images/Horse Racing System.png" alt="Horse Racing System" class="project-image">
             <div class="project-content">
               <h3 class="project-title">Horse Racing System</h3>
+               <div class="project-meta">
+                   <span class="project-year">2025</span>
+                   <span class="project-category">Database Project</span>
+               </div>
               <p class="project-desc">Developed a database-driven application using JavaFX and MySQL, implementing complex SQL queries and stored procedures. Ensured data integrity through rigorous testing.</p>
               <a class="project-link" href="https://github.com/RaneemAlshahrani/Horse-Racing-System.git">Learn More →</a>
             </div>
         </div>
-        <div class="project">
-          <!-- ToDo3: Add a data-category attribute to each project card.
-     Example: <div class="project" data-category="database"> -->
-
+        <div class="project" data-category="requirements" data-title="KFUPM Student Impact Hub" data-year="2024">
             <img src="assets/images/KFUPM Student Impact Hub.png" alt="KFUPM Student Impact Hub" class="project-image">
             <div class="project-content">
               <h3 class="project-title">KFUPM Student Impact Hub</h3>
+              <div class="project-meta">
+                  <span class="project-year">2024</span>
+                  <span class="project-category">Requirements Project</span>
+              </div>
               <p class="project-desc">Produced a complete requirements engineering document with stakeholder analysis and use-case modeling. Designed and validated interactive UI/UX prototypes in Figma.</p>
               <a class="project-link" href="https://github.com/RaneemAlshahrani/KFUPM-Student-Impact-Hub.git">Learn More →</a>
             </div>
         </div>        
-        <div class="project">
-          <!-- ToDo3: Add a data-category attribute to each project card.
-     Example: <div class="project" data-category="database"> -->
-
+        <div class="project" data-category="ai" data-title="Data Analysis & AI Project" data-year="2024">
             <img src="assets/images/Data Analysis & AI Project.png" alt="Data Analysis & AI Project" class="project-image">
             <div class="project-content">
               <h3 class="project-title">Data Analysis & AI Project</h3>
+              <div class="project-meta">
+                  <span class="project-year">2024</span>
+                  <span class="project-category">AI Project</span>
+              </div>
               <p class="project-desc">Applied data preprocessing and multiple AI models using Python to analyze real-world datasets. Evaluated model performance and documented analytical insights.</p>
               <a class="project-link" href="https://github.com/RaneemAlshahrani/Data-Analysis-AI-Project.git">Learn More →</a>
             </div>
         </div>
-        <div class="project">
-          <!-- ToDo3: Add a data-category attribute to each project card.
-     Example: <div class="project" data-category="database"> -->
-
+        <div class="project" data-category="requirements" data-title="Club Zone - Software Requirements Specification" data-year="2023">
             <img src="assets/images/Club Zone - Software Requirements Specification.png" alt="Club Zone SRS" class="project-image">
             <div class="project-content">
               <h3 class="project-title">Club Zone - Software Requirements Specification</h3>
+              <div class="project-meta">
+                  <span class="project-year">2023</span>
+                  <span class="project-category">Requirements Project</span>
+              </div>
               <p class="project-desc">Authored a comprehensive Software Requirements Specification for a student club management platform covering functional and non-functional requirements, registration, and event workflows.</p>
               <a class="project-link" href="https://github.com/RaneemAlshahrani/Club-Zone---Software-Requirements-Specification.git">Learn More →</a>
             </div>
         </div>
+        </div>
+        <p id="no-projects-msg" hidden>No projects found.</p>
     </section>
-    <section id="skills">
+    <section id="skills" class="reveal">
     <h2 class="skills-title">Skills</h2>
 
-    <div class="skills-group">
+    <div>
         <h3>Front-end</h3>
         <ul class="skills-row">
         <li><img src="assets/images/html.png" alt="HTML"></li>
@@ -146,7 +167,7 @@
         </ul>
     </div>
 
-    <div class="skills-group">
+    <div>
         <h3>Back-end</h3>
         <ul class="skills-row">
         <li><img src="assets/images/python.png" alt="Python"></li>
@@ -154,14 +175,14 @@
         </ul>
     </div>
 
-    <div class="skills-group">
+    <div>
         <h3>Databases</h3>
         <ul class="skills-row">
         <li><img src="assets/images/mysql.png" alt="MySQL"></li>
         </ul>
     </div>
 
-    <div class="skills-group">
+    <div>
         <h3>Tools</h3>
         <ul class="skills-row">
         <li><img src="assets/images/git.png" alt="Git"></li>
@@ -171,14 +192,11 @@
     </div>
     </section>
 
-    <section id="contact">
-      <!-- ToDo4: Add a div for form feedback messages.
-     Example: <div id="form-feedback" class="form-message"></div>
-     This will display validation errors or success messages dynamically. -->
-
+    <section id="contact" class="reveal">
         <h2>Contact Me</h2>
+        <div id="form-feedback" class="form-message" aria-live="polite"></div>
         <!-- Contact form sends user input via default mail client -->
-        <form action="mailto:s202277080@kfupm.edu.sa" method="post" enctype="text/plain">
+        <form id="contact-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" required>
 
@@ -195,14 +213,18 @@
         </form>
     </section>  
     <footer>
-        <ul class="social-icons">
+        <ul>
             <li><a href="mailto:raneemal14251026@gmail.com"><img src="assets/images/email.png" alt="Email Icon" height="50" width="50" class="icon"></a></li>
             <li><a href="https://www.linkedin.com/in/raneem-alshahrani"><img src="assets/images/linkedin.png" alt="LinkedIn Icon" height="50" width="50" class="icon"></a></li>
             <li><a href="https://github.com/RaneemAlshahrani"><img src="assets/images/github.png" alt="GitHub Icon" height="50" width="50" class="icon"></a></li>
         </ul>
         <p>&copy; 2026 Raneem Alshahrani. All rights reserved.</p>
     </footer>
-    <!-- Handles theme toggle, font size adjustment, and mobile menu behavior -->
+
+     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+     <script>
+        emailjs.init("9JeFd_jTxIZdZTrjk"); // Initialize EmailJS with your user ID
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /* ===== Base reset ===== */
-*{box-sizing:border-box}
-html{scroll-behavior:smooth} 
+html{box-sizing:border-box;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
 body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -13,7 +13,7 @@ button{font:inherit}
 @media(prefers-color-scheme:dark){:root:not([data-theme]){--bg:#0b0f19;--surface:#10182a;--text:#e7ecff;--muted:#a9b4d0;--border:rgba(255,255,255,.12);--shadow:0 18px 45px rgba(0,0,0,.45);--accent:#8b5cf6}}
 
 /* ===== Layout ===== */
-section{max-width:980px;margin:0 auto;padding:28px 18px}
+section{max-width:1200px;margin:0 auto;padding:28px 18px;width:100%}
 
 /* ===== Scroll reveal ===== */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;will-change:opacity,transform}
@@ -22,13 +22,14 @@ section{max-width:980px;margin:0 auto;padding:28px 18px}
 
 /* ===== Hero animations ===== */
 .hero-title{margin:45px;font-weight:800;animation:fadeUp 1.1s ease-out both .15s;font-size:50px;text-align:center}
-.hero-name{display:inline-block;background:linear-gradient(120deg,var(--accent),color-mix(in srgb,var(--accent) 60%,white));background-clip:text;-webkit-background-clip:text;color:transparent;animation:nameFloat 3.5s ease-in-out infinite}
+.hero-name{display:inline-block;background:linear-gradient(120deg,var(--accent),color-mix(in srgb,var(--accent) 60%,white));background-clip:text;color:transparent;animation:nameFloat 3.5s ease-in-out infinite}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes nameFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 
 /* ===== Sections ===== */
-#home,#about,#projects,#skills,#contact{min-height:calc(100vh - var(--header-h));display:flex;flex-direction:column;align-items:center;justify-content:center}
-#about,#projects,#skills,#contact,footer{text-align:center}
+#home,#about,#skills,#contact{min-height:calc(100vh - var(--header-h));display:flex;flex-direction:column;align-items:center;justify-content:center}
+#projects{min-height:calc(100vh - var(--header-h));display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
+#about,#skills,#contact,footer{text-align:center}
 h1,h2,h3{line-height:1.2;margin:0 0 10px}
 p{margin:0 0 12px;color:var(--muted);max-width:760px}
 .profile-pic{width:200px;height:200px;margin:0 auto;border-radius:999px;border:2px solid var(--border);box-shadow:var(--shadow)}
@@ -46,7 +47,7 @@ p{margin:0 0 12px;color:var(--muted);max-width:760px}
 
 /* ===== Mobile menu ===== */
 .menu-btn{display:none}
-.hidden{display:none!important}
+.hidden{display:none}
 .mobile-menu{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(94%,520px);max-height:calc(100vh - 56px);background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 30px 80px rgba(2,6,23,.18);padding:14px;z-index:1000;overflow:auto;transition:transform .18s ease,opacity .12s ease;opacity:1;text-align:left}
 .mobile-menu__header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:10px}
 .mobile-menu__title{font-weight:800}
@@ -55,35 +56,43 @@ p{margin:0 0 12px;color:var(--muted);max-width:760px}
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:900}
 .mobile-menu .icon-btn:focus{box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 25%,transparent)}
 body.menu-open{overflow:hidden}
-@media(max-width:600px){.nav-links{display:none}.menu-btn{display:grid}.projects{grid-template-columns:1fr; padding:0;}.project{flex-direction:column; gap:12px;}.project-image,.project-desc,.project-title,.project-link{width:100%; height:auto;}}
-@media(min-width:761px){.mobile-menu,.backdrop{display:none!important}}
+@media(max-width:760px){.nav-links{display:none}.menu-btn{display:grid}}
+@media(min-width:761px){.mobile-menu,.backdrop{display:none}}
 @media(max-width:380px){.mobile-menu{padding:10px;top:10px}}
 
 /* ===== Projects ===== */
-/* ================= Assignment 2 Upgrade ================= */
+#projects h2{text-align:center;margin-bottom:18px}
+.project-controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:24px;width:100%;max-width:1100px}
+.project-filter{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.project-filter label{margin:0;font-size:.95rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.project-filter select{padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.95rem;outline:none;transition:border-color .15s ease,box-shadow .15s ease;min-width:160px}
+.project-filter select:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+.project-sort{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sort-btn{padding:10px 18px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .12s ease}
+.sort-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-1px)}
+.sort-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-/* ToDo5: Add styles for active filter button.
-   Example: .filter-btn.active { background: #000; color: #fff; } */
+/* ===== Projects grid ===== */
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;width:100%;max-width:1100px;margin:0 auto;align-items:start}
 
-/* ToDo6: Add smooth transition when projects hide/show.
-   Use opacity + transform for better UX. */
-
-/* ToDo7: Style the empty state message (#no-projects-msg).
-   Make it centered and slightly faded. */
-
+/* ===== Project card ===== */
+.project{width:100%;min-width:0;border-radius:18px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:16px;gap:14px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
 .project:hover{transform:translateY(-6px);border-color:var(--accent)}
-.project-content{display:flex;flex-direction:column;gap:8px;flex:1}
-.project-title{margin:0;padding:10px;font-size:1.1rem;font-weight:700;line-height:1.25}
-.project-desc{margin:0;padding:10px;color:var(--muted);line-height:1.5;font-size:.95rem}
-.project-link{color:var(--accent);padding:10px;text-decoration:none;font-weight:500;font-size:.95rem}
+.project-image{width:100%;display:block;aspect-ratio:16/9;height:auto;object-fit:cover;object-position:top;border-radius:14px;border:1px solid var(--border);background:#fff}
+.project-content{display:flex;flex-direction:column;gap:10px;padding:4px 8px 8px;flex:1}
+.project-title{margin:0;font-size:1.1rem;font-weight:700;line-height:1.3;color:var(--accent)}
+.project-desc{margin:0;color:var(--muted);line-height:1.6;font-size:.95rem}
+.project-link{color:var(--accent);font-weight:600;font-size:.95rem;margin-top:auto}
 .project-link:hover{text-decoration:underline}
-/* Mobile default */
-.projects{display:grid;grid-template-columns:1fr;gap:10px;max-width:900px;padding:10px;align-items:start}
-.project{width:100%;padding:20px;border-radius:18px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;align-items:flex-start;text-align:left;transition:transform .2s ease,border-color .2s ease}
-.project-image{width:100%;height:auto;object-fit:cover;border-radius:12px;flex-shrink:0}
 
-/* Desktop enhancements */
-@media (min-width:600px){.projects{grid-template-columns:repeat(2,1fr)}.project{flex-direction:row}.project-image{width:320px;height:160px}}
+/* ===== Project meta badges ===== */
+.project-meta{display:flex;gap:8px;flex-wrap:wrap}
+.project-year,.project-category{font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px}
+.project-year{background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent)}
+.project-category{background:color-mix(in srgb,var(--muted) 15%,transparent);color:var(--muted)}
+
+/* ===== Empty state ===== */
+#no-projects-msg{text-align:center;color:var(--muted);font-size:1rem;padding:40px 0;width:100%}
 
 /* ===== Skills ===== */
 #skills ul{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center}
@@ -91,11 +100,6 @@ body.menu-open{overflow:hidden}
 #skills h3{margin:45px;font-size:1.5em}
 
 /* ===== Contact form ===== */
-/* ToDo8: Add styles for form feedback messages.
-   .form-message.success { color: green; }
-   .form-message.error { color: red; }
-   Add fade-in animation for better UX. */
-
 #contact form{width:100%;max-width:520px;margin-top:18px;display:grid;gap:14px;text-align:left}
 #contact label{font-weight:600;color:var(--text)}
 #contact input,#contact textarea{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:1rem;outline:none;transition:border-color .15s ease,box-shadow .15s ease}
@@ -106,15 +110,22 @@ body.menu-open{overflow:hidden}
 #contact input[type="submit"]:hover{transform:translateY(-1px);opacity:.95}
 #contact input[type="submit"]:active{transform:translateY(0);box-shadow:none}
 
+/* ===== Form feedback ===== */
+.form-message{width:100%;max-width:520px;padding:0;border-radius:12px;font-weight:600;font-size:.95rem;text-align:center;overflow:hidden;max-height:0;transition:max-height .3s ease,padding .3s ease,opacity .3s ease;opacity:0}
+.form-message.show{padding:14px 20px;max-height:80px;opacity:1}
+.form-message.success{background:color-mix(in srgb,#22c55e 15%,transparent);color:#16a34a;border:1px solid #86efac}
+.form-message.error{background:color-mix(in srgb,#ef4444 15%,transparent);color:#dc2626;border:1px solid #fca5a5}
+
 /* ===== Dark mode icon fixes ===== */
-:root[data-theme="dark"] img.dark-invert{filter:invert(1) hue-rotate(180deg) contrast(1.05)}
-:root[data-theme="dark"] footer img.icon{filter:invert(1)}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme]) img.dark-invert{filter:invert(1) hue-rotate(180deg) contrast(1.05)}
-  :root:not([data-theme]) footer img.icon{filter:invert(1)}}
+:root[data-theme="dark"] .dark-invert,:root[data-theme="dark"] footer .icon{filter:invert(1) hue-rotate(180deg) contrast(1.05)}
+@media(prefers-color-scheme:dark){:root:not([data-theme]) .dark-invert,:root:not([data-theme]) footer .icon{filter:invert(1) hue-rotate(180deg) contrast(1.05)}}
 
 /* ===== Footer ===== */
 footer{border-top:1px solid var(--border);padding:18px;max-width:980px;margin:40px auto 30px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;z-index:10;position:relative}
 footer ul{display:flex;justify-content:center;align-items:center;gap:18px}
 footer img.icon{width:48px;height:48px;opacity:.9;transition:filter .2s ease,opacity .2s ease}
 footer img.icon:hover{opacity:1}
+
+/* ===== Responsive ===== */
+@media(max-width:900px){.projects{grid-template-columns:1fr}.project-controls{justify-content:center}.project-sort{justify-content:center}}
+@media(max-width:600px){.project-controls{flex-direction:column;align-items:stretch}.project-filter{flex-direction:column;align-items:flex-start}.project-filter select,.sort-btn{width:100%}.project-sort{flex-direction:column;align-items:stretch}}

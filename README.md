@@ -1,7 +1,7 @@
 # Project description
 This project is a personal portfolio website built using HTML, CSS, and JavaScript to showcase my background, projects, and skills in a clear and organized way. I designed and structured the website to reflect my work and present it professionally. AI tools were used strategically during development for minor suggestions, debugging support, and refining certain parts, while the overall concept, design, and content were developed independently by me.
 
-## Features
+# Features
 
 - Responsive design for desktop and mobile devices
 - Light/Dark mode toggle with saved preferences
@@ -42,7 +42,7 @@ https://github.com/RaneemAlshahrani/202277080-Raneem-Alshahrani-assignment2.git
 7. Open the index.html file.
 8. Open it in your browser (Run → Run Without Depugging), or install the Live Server extension in VS Code and click “Go Live.”
 
-## Usage
+# Usage
 
 - Navigate using the top navigation bar
 - Scroll through sections to view content
@@ -54,7 +54,7 @@ https://github.com/RaneemAlshahrani/202277080-Raneem-Alshahrani-assignment2.git
 # Short summary of AI use
 AI tools were used during development to assist with small improvements, debugging minor issues, and refining certain sections of the code. The overall structure, layout, design decisions, and content of the website were created independently by me. A detailed explanation of AI usage is provided in `ai-usage-report.md`.
 
-## Contact
+# Contact
 
 - Email: raneemal14251026@gmail.com
 - LinkedIn: [Raneem Alshahrani](https://www.linkedin.com/in/raneem-alshahrani)

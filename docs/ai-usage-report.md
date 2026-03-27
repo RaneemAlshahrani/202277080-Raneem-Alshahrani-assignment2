@@ -115,8 +115,6 @@ if (!emailRegex.test(email)) {
 * Improves user experience
 * Meets error handling requirement
 
----
-
 ## Learning Outcomes
 
 ### CSS Concepts Learned:

@@ -50,7 +50,6 @@ p{margin:0 0 12px;color:var(--muted);max-width:760px}
 .hidden{display:none}
 .mobile-menu{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(94%,520px);max-height:calc(100vh - 56px);background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 30px 80px rgba(2,6,23,.18);padding:14px;z-index:1000;overflow:auto;transition:transform .18s ease,opacity .12s ease;opacity:1;text-align:left}
 .mobile-menu__header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:10px}
-.mobile-menu__title{font-weight:800}
 .mobile-links{display:grid;gap:8px;padding-top:10px}
 .mobile-links a{display:block;padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-weight:650}
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:900}
@@ -63,10 +62,14 @@ body.menu-open{overflow:hidden}
 /* ===== Projects ===== */
 #projects h2{text-align:center;margin-bottom:18px}
 .project-controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:24px;width:100%;max-width:1100px}
-.project-filter{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .project-filter label{margin:0;font-size:.95rem;font-weight:600;color:var(--muted);white-space:nowrap}
-.project-filter select{padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.95rem;outline:none;transition:border-color .15s ease,box-shadow .15s ease;min-width:160px}
-.project-filter select:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+.project-filter{display:flex;align-items:center;gap:12px;flex-wrap:nowrap}
+.custom-select{position:relative;flex:1;min-width:220px}
+.custom-select-trigger{width:100%;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.95rem;text-align:left;cursor:pointer;position:relative}
+.custom-select-trigger::after{content:"▼";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:.7rem;pointer-events:none}
+.custom-select-menu{position:absolute;top:calc(100% + 6px);left:0;width:100%;margin:0;padding:6px 0;border:1px solid var(--border);border-radius:12px;background:var(--surface);box-shadow:var(--shadow);z-index:100}
+.custom-option{padding:10px 14px;cursor:pointer;color:var(--text)}
+.custom-option:hover,.custom-option.selected{background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--text)}
 .project-sort{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .sort-btn{padding:10px 18px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .12s ease}
 .sort-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-1px)}
@@ -121,11 +124,11 @@ body.menu-open{overflow:hidden}
 @media(prefers-color-scheme:dark){:root:not([data-theme]) .dark-invert,:root:not([data-theme]) footer .icon{filter:invert(1) hue-rotate(180deg) contrast(1.05)}}
 
 /* ===== Footer ===== */
-footer{border-top:1px solid var(--border);padding:18px;max-width:980px;margin:40px auto 30px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;z-index:10;position:relative}
+footer{border-top:1px solid var(--border);padding:18px;max-width:980px;margin:40px auto 30px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;position:relative}
 footer ul{display:flex;justify-content:center;align-items:center;gap:18px}
 footer img.icon{width:48px;height:48px;opacity:.9;transition:filter .2s ease,opacity .2s ease}
 footer img.icon:hover{opacity:1}
 
 /* ===== Responsive ===== */
 @media(max-width:900px){.projects{grid-template-columns:1fr}.project-controls{justify-content:center}.project-sort{justify-content:center}}
-@media(max-width:600px){.project-controls{flex-direction:column;align-items:stretch}.project-filter{flex-direction:column;align-items:flex-start}.project-filter select,.sort-btn{width:100%}.project-sort{flex-direction:column;align-items:stretch}}
+@media(max-width:600px){.project-controls{flex-direction:column;align-items:stretch}.project-filter{flex-direction:column;align-items:flex-start}.custom-select,.custom-select-trigger,.sort-btn{width:100%}.project-sort{flex-direction:column;align-items:stretch}}

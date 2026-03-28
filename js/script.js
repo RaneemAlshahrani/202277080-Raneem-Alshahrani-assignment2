@@ -129,7 +129,6 @@
     "#projects",          // Projects section
     ".project",           // Individual project cards
     "#skills",            // Skills section
-    ".skills-group",      // Skill groups
     "#contact",           // Contact section
     "footer"              // Footer
   ];
@@ -174,24 +173,25 @@
 
 // ===== Projects: filter, search, sort =====
 const projects = Array.from(document.querySelectorAll('.project'));
-const filterSelect = document.getElementById('project-filter');
+const filterBtn = document.getElementById('project-filter-btn');
+const filterMenu = document.getElementById('project-filter-menu');
+const filterOptions = Array.from(document.querySelectorAll('.custom-option'));
 const sortYearBtn = document.getElementById('sort-year');
 const sortNameBtn = document.getElementById('sort-name');
 const noProjectsMsg = document.getElementById('no-projects-msg');
 
-// Find the wrapper that holds only the project cards
-// We'll use a dedicated container — insert one after project-controls in HTML
+// Container that holds the project cards
 const projectGrid = document.getElementById('project-grid');
 
 let currentSort = null;
+let selectedCategory = 'all';
 
 function filterProjects() {
-  const category = filterSelect?.value || 'all';
+  const category = selectedCategory;
 
   let visible = projects.filter(p => {
     const cat = p.dataset.category || '';
-    const matchCategory = category === 'all' || cat === category;
-    return matchCategory;
+    return category === 'all' || cat === category;
   });
 
   if (currentSort === 'year') {
@@ -210,7 +210,39 @@ function filterProjects() {
   if (noProjectsMsg) noProjectsMsg.hidden = visible.length > 0;
 }
 
-filterSelect?.addEventListener('change', filterProjects);
+filterBtn?.addEventListener('click', () => {
+  const isOpen = !filterMenu.classList.contains('hidden');
+  filterMenu.classList.toggle('hidden');
+  filterBtn.setAttribute('aria-expanded', String(!isOpen));
+});
+
+filterOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    selectedCategory = option.dataset.value || 'all';
+    filterBtn.textContent = option.textContent;
+
+    filterOptions.forEach(opt => {
+      opt.classList.remove('selected');
+      opt.setAttribute('aria-selected', 'false');
+    });
+
+    option.classList.add('selected');
+    option.setAttribute('aria-selected', 'true');
+
+    filterMenu.classList.add('hidden');
+    filterBtn.setAttribute('aria-expanded', 'false');
+
+    filterProjects();
+  });
+});
+
+document.addEventListener('click', e => {
+  const wrap = document.getElementById('project-filter-wrap');
+  if (wrap && !wrap.contains(e.target)) {
+    filterMenu?.classList.add('hidden');
+    filterBtn?.setAttribute('aria-expanded', 'false');
+  }
+});
 
 sortYearBtn?.addEventListener('click', () => {
   currentSort = currentSort === 'year' ? null : 'year';
@@ -275,3 +307,4 @@ contactForm?.addEventListener('submit', async (e) => {
   }
 });
 
+filterProjects();
